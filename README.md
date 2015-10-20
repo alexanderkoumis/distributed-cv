@@ -13,4 +13,6 @@ npm install
 
 # Start DistributedCV
 node app.js
+
+# App is at http://localhost:3000
 ```
