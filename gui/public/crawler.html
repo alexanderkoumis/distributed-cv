@@ -64,8 +64,8 @@
         </li>
         <li class="dropdown menu-merge">
           <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown">
-            <img src="assets/img/avatars/1.jpg" alt="avatar" class="mw30 br64">
-            <span class="hidden-xs pl15"> Cool B. </span>
+          	<img src="assets/img/avatars/1.jpg" alt="avatar" class="mw30 br64">
+          	<span class="hidden-xs pl15"> Cool B. </span>
             <span class="caret caret-tp hidden-xs"></span>
           </a>
           <ul class="dropdown-menu list-group dropdown-persist w250" role="menu">
@@ -182,14 +182,14 @@
               <span class="sidebar-title">Documentation</span>
             </a>
           </li>
-          <li class="active">
+          <li>
             <a href="index.html">
               <span class="glyphicon glyphicon-home"></span>
               <span class="sidebar-title">Dashboard</span>
             </a>
           </li>
           <li class="sidebar-label pt15">Dataset Collection</li>
-          <li>
+          <li class="active">
             <a href="crawler.html">
               <span class="fa fa-globe"></span>
               <span class="sidebar-title">Web Crawler</span>
@@ -244,13 +244,13 @@
         </ul>
         <!-- End: Sidebar Menu -->
 
-        <!-- Start: Sidebar Collapse Button -->
-        <div class="sidebar-toggle-mini">
-          <a href="#">
-            <span class="fa fa-sign-out"></span>
-          </a>
-        </div>
-        <!-- End: Sidebar Collapse Button -->
+	      <!-- Start: Sidebar Collapse Button -->
+	      <div class="sidebar-toggle-mini">
+	        <a href="#">
+	          <span class="fa fa-sign-out"></span>
+	        </a>
+	      </div>
+	      <!-- End: Sidebar Collapse Button -->
 
       </div>
       <!-- End: Sidebar Left Content -->
@@ -266,7 +266,7 @@
         <div class="topbar-left">
           <ol class="breadcrumb">
             <li class="crumb-active">
-              <a href="index.html">Dashboard</a>
+              <a>Web Crawler</a>
             </li>
             <li class="crumb-icon">
               <a href="index.html">
@@ -274,9 +274,9 @@
               </a>
             </li>
             <li class="crumb-link">
-              <a href="index.html">Home</a>
+              <a href="index.html">Dataset Collection</a>
             </li>
-            <li class="crumb-trail">Dashboard</li>
+            <li class="crumb-trail">Web Crawler</li>
           </ol>
         </div>
       </header>
@@ -295,60 +295,6 @@
 
           <!-- Admin-panels -->
           <div class="admin-panels fade-onload">
-
-            <div class="row">
-
-              <div class="col-md-10 admin-grid">
-
-                <!-- Search List -->
-                <div class="panel" id="p17">
-                  <div class="panel-heading">
-                    <span class="panel-title">Running jobs</span>
-                  </div>
-                  <div class="panel-body pn">
-                    <table class="table mbn tc-med-1 tc-bold-last">
-                      <thead>
-                        <tr class="hidden">
-                          <th>#</th>
-                          <th>First Name</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <span class="fa fa-youtube-play mr10"></span>
-                            <span class="sidebar-title">Coca-Cola Commercials - https://www.youtube.com/watch?v=NwCn-D5xFdc</span>
-                          </td>
-                          <td>7%</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <span class="fa fa-youtube-play mr10"></span>
-                            <span class="sidebar-title">Verizon Wireless Commercials - https://www.youtube.com/watch?v=td-eYuwAGr4</span>
-                          </td>
-                          <td>35%</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <span class="fa fa-globe mr10"></span>
-                            <span class="sidebar-title">https://huffingtonpost.com</span>
-                          </td>
-                          <td>10%</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <span class="fa fa-youtube-play mr10"></span>
-                            <span class="sidebar-title">Universal Pictures Trailers - https://huffingtonpost.com</span>
-                          </td>
-                          <td>80%</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- end: .row -->
 
           </div>
 
@@ -525,14 +471,14 @@
       }
 
       if (Target.parents('.task-handle').length) {
-          // If item is already checked move it to "current items list"
-          if (This.hasClass('item-checked')) {
-            This.removeClass('item-checked').find('input[type="checkbox"]').prop('checked', false);
-          }
-          // Otherwise move it to the "completed items list"
-          else {
-            This.addClass('item-checked').find('input[type="checkbox"]').prop('checked', true);
-          }
+		      // If item is already checked move it to "current items list"
+		      if (This.hasClass('item-checked')) {
+		        This.removeClass('item-checked').find('input[type="checkbox"]').prop('checked', false);
+		      }
+		      // Otherwise move it to the "completed items list"
+		      else {
+		        This.addClass('item-checked').find('input[type="checkbox"]').prop('checked', true);
+		      }
       }
 
     });
