@@ -27,6 +27,9 @@ def print_debug(message):
         print '[DEBUG]', message
 
 def make_archive(files, out):
+    if os.path.isfile(out):
+        print '{} is already an archive'.format(out)
+        return
     with tarfile.open(out, 'w:gz') as tar:
         print_debug('Creating tar: {}'.format(out))
         for file in files:
@@ -67,7 +70,9 @@ def main():
     parser.add_argument('--gpu', help='Enable GPU on AWS (Warning: will cost more)', action='store_true', dest='gpu')
     args = parser.parse_args()
 
-    config = AwsConfiguration('gpu' if args.gpu else 'cpu')
+    gpu_or_cpu = 'gpu' if args.gpu else 'cpu'
+
+    config = AwsConfiguration(gpu_or_cpu)
 
     if args.run:
         run_type = args.run
@@ -109,6 +114,7 @@ def main():
             '--jobconf=job.settings.video_dir=video_dir',
             '--jobconf=job.settings.cascade_cpu={}'.format(cascade_cpu),
             '--jobconf=job.settings.cascade_gpu={}'.format(cascade_gpu),
+            '--jobconf=job.settings.gpu_or_cpu={}'.format(gpu_or_cpu),
             '--jobconf=job.settings.colorferet=colorferet',
             '--archive=resources/colorferet.tar.gz#colorferet',
             '--archive={}#video_dir'.format(video_tar_full),

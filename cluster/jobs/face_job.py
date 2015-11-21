@@ -5,6 +5,8 @@ import logging
 import os
 import re
 import sys
+import time
+import timeit
 
 import cv2
 import numpy
@@ -15,10 +17,25 @@ from mrjob.job import MRJob
 from mrjob.step import MRStep
 from mrjob.compat import jobconf_from_env
 
+class Timer(object):
+
+    def __init__(self):
+        self.start_time = timeit.default_timer()
+        self.start_time_str = time.strftime('%H:%M:%S')
+
+    def time(self):
+        elapsed = timeit.default_timer() - self.start_time
+        end_time_str = time.strftime('%H:%M:%S')
+        time_format = '\nStart time: {0}\tEnd time: {1}\tElapsed time: {2} seconds\n'
+        sys.stderr.write(time_format.format(self.start_time_str, end_time_str, elapsed))
+
+
+timer = Timer()
 
 class MRFaceTask(MRJob):
     """A HDFS face/race detection interface.
     """
+
 
     def mapper_init(self):
 
@@ -62,7 +79,9 @@ class MRFaceTask(MRJob):
             # self.recognizer = cv2.face.createFisherFaceRecognizer()
             # self.recognizer = cv2.face.createEigenFaceRecognizer()
 
-        if cv2gpu.is_cuda_compatible():
+        gpu_or_cpu = jobconf_from_env('job.settings.gpu_or_cpu')
+
+        if cv2gpu.is_cuda_compatible() and gpu_or_cpu == 'gpu':
             sys.stderr.write('Using GPU CascadeClassifier')
             cv2gpu.init_gpu_detector(jobconf_from_env('job.settings.cascade_gpu'))
         else:
@@ -88,6 +107,7 @@ class MRFaceTask(MRJob):
 
         self.write_results = False
 
+
     def mapper(self, _, line):
 
         race_predicted = {
@@ -102,7 +122,6 @@ class MRFaceTask(MRJob):
         }
 
         frame_path = os.path.join(self.video_dir, line)
-        # sys.stderr.write('frame path: {0}'.format(frame_path))
         frame = cv2.imread(frame_path)
         frame_bgr = None
         if len(frame.shape) == 3:
@@ -128,6 +147,8 @@ class MRFaceTask(MRJob):
     def reducer(self, race, count):
         yield race, sum(count)
 
+    def reducer_final(self):
+        timer.time()
 
 if __name__ == '__main__':
     MRFaceTask.run()
