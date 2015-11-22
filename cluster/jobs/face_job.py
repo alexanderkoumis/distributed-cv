@@ -66,7 +66,7 @@ class MRFaceTask(MRJob):
 
             return images, labels
 
-        self.video_dir = jobconf_from_env('job.settings.video_dir')
+        self.dataset_dir = 'dataset_dir'
         self.output_dir = os.path.join(jobconf_from_env('mapreduce.task.output.dir'), 'faces')
         self.opencv_version = int(cv2.__version__.split('.')[0])
 
@@ -121,7 +121,7 @@ class MRFaceTask(MRJob):
             'White': 0
         }
 
-        frame_path = os.path.join(self.video_dir, line)
+        frame_path = os.path.join(self.dataset_dir, line)
         frame = cv2.imread(frame_path)
         frame_bgr = None
         if len(frame.shape) == 3:

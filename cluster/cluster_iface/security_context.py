@@ -1,13 +1,11 @@
 #!/usr/bin/python
 """A security context module.
+This module is used to locate a user's credential file for use with their 
+Amazon EC2 instances.
 """
 
-# Open-Source/Free Imports
 import csv
 import os
-
-# Private-IP Imports Carlis/Koumis.
-# import private_ip_lib
 
 class SecurityContext(object):
     """Abstract Security Context Object.
