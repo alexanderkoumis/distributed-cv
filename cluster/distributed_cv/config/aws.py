@@ -3,7 +3,7 @@
 import os
 import yaml
 
-from security_context import AwsSecurityContext
+from distributed_cv.config.security import AwsSecurityContext
 
 class Configuration(object):
     """Abstract Configuration class.
@@ -17,6 +17,25 @@ class AwsConfiguration(Configuration):
     AWS_SEC = AwsSecurityContext()
     CONFIG_FILE = '.mrjob.conf'
     PEM_KEYS = '.ssh/key_pair2.pem'
+
+    # The configured/formatted string resource.
+    mrjob_conf = ''
+
+    def __init__(self, cpu_or_gpu, num_ec2_instances):
+        cpu_or_gpu = 'gpu' if cpu_or_gpu == 'gpu' else 'cpu'
+        self.conf_file = os.path.join(self.AWS_SEC.HOME, self.CONFIG_FILE)
+        CONFIGURATION = self._get_config(cpu_or_gpu, num_ec2_instances)
+
+        if 'matt' not in os.path.basename(self.AWS_SEC.HOME):
+            # If it's not matt it's alex. Hopefully.
+            CONFIGURATION['runners']['emr']['owner'] = 'konixmusic'
+            CONFIGURATION['runners']['emr']['owner'] = 'konixmusic'
+
+        if not self.mrjob_conf:
+            # We haven't config'd env b/c don't have the config'd format string.
+            self.mrjob_conf = self._install_config(CONFIGURATION)
+        # Control the environment.
+        self._master_config_ctrlr()
 
     def _get_config(self, cpu_or_gpu, num_ec2_instances):
         if cpu_or_gpu == 'cpu':
@@ -129,25 +148,6 @@ class AwsConfiguration(Configuration):
                     }
                 }
             }
-
-    # The configured/formatted string resrouce.
-    mrjob_conf = ''
-
-    def __init__(self, cpu_or_gpu, num_ec2_instances):
-        cpu_or_gpu = 'gpu' if cpu_or_gpu == 'gpu' else 'cpu'
-        self.conf_file = os.path.join(self.AWS_SEC.HOME, self.CONFIG_FILE)
-        CONFIGURATION = self._get_config(cpu_or_gpu, num_ec2_instances)
-
-        if 'matt' not in os.path.basename(self.AWS_SEC.HOME):
-            # If it's not matt it's alex. Hopefully.
-            CONFIGURATION['runners']['emr']['owner'] = 'konixmusic'
-            CONFIGURATION['runners']['emr']['owner'] = 'konixmusic'
-
-        if not self.mrjob_conf:
-            # We haven't config'd env b/c don't have the config'd format string.
-            self.mrjob_conf = self._install_config(CONFIGURATION)
-        # Control the environment.
-        self._master_config_ctrlr()
 
     def _install_config(self, config):
         """Dump the config file.

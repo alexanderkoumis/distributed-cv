@@ -1,4 +1,3 @@
-#!/usr/bin/python
 """A security context module.
 This module is used to locate a user's credential file for use with their 
 Amazon EC2 instances.
@@ -54,5 +53,3 @@ class AwsSecurityContext(SecurityContext):
             self.HOME = os.environ['HOME']
             self.KEY_FILE_PATH = os.path.join(self.HOME,
                                               '.ssh/rootkey.csv')
-
-

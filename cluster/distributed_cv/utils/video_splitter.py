@@ -85,7 +85,7 @@ class VideoSplitter(object):
          return '{}_{}.{}'.format(self.base, frame_num, self.ext)
 
     def _write_list(self, out_dir):
-        self.list_path = os.path.join(out_dir, 'list.txt')
+        self.list_path = os.path.join(out_dir, '{}.txt'.format(self.stem))
         list_file = open(self.list_path, 'w')
         for frame_path in self.file_list:
             list_file.write('{}\n'.format(os.path.basename(frame_path)))
