@@ -75,7 +75,7 @@ class AwsConfiguration(Configuration):
                         'ami_version': '3.10.0',
                         'check_emr_status_every': 10,
                         'enable_emr_debugging': True,
-                        'emr_action_on_failure': 'CANCEL_AND_WAIT'
+                        'emr_action_on_failure': 'CONTINUE'
                         # 'python_archives': None
                     },
                     'inline': {
@@ -117,7 +117,6 @@ class AwsConfiguration(Configuration):
         
                         ##### Cost Factors #####
                         'num_ec2_instances': num_ec2_instances,
-                        'aws_region': 'us-east-1e',
                         'ec2_master_instance_type': 'g2.2xlarge',
                         'ec2_slave_instance_type': 'g2.2xlarge',
                         'ec2_core_instance_type': 'g2.2xlarge',
@@ -141,7 +140,7 @@ class AwsConfiguration(Configuration):
                         'ami_version': '3.10.0',
                         'check_emr_status_every': 10,
                         'enable_emr_debugging': True,
-                        'emr_action_on_failure': 'CANCEL_AND_WAIT'
+                        'emr_action_on_failure': 'CONTINUE'
                         # 'python_archives': None
                     },
                     'inline': {

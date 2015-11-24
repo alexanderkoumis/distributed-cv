@@ -1,4 +1,5 @@
 import os
+import re
 import sys
 
 import boto3
@@ -23,8 +24,14 @@ class MRJobRunnerEMR(MRJobRunner):
         bucket_obj = boto3.resource('s3').Bucket(self.bucket)
         existing_out_dirs = list(bucket_obj.objects.filter(Prefix=out_dir+'/'))
         dir_num = 0
-        if len(existing_out_dirs) > 0:
-            dir_num = int(existing_out_dirs[-1].key.split('/')[1].split('_')[1]) + 1
+
+        for b in existing_out_dirs:
+            matches = re.match(r'.*result_(\d+).*', b.key)
+            if matches:
+                num = int(matches.group(1))
+                if num > dir_num:
+                    dir_num = num
+        dir_num += 1
         out_path = 's3://{}/{}/{}_{}'.format(self.bucket, out_dir, out_subdir, dir_num)
 
         job_args.extend(['-remr', '--output-dir={}'.format(out_path)])
