@@ -25,6 +25,6 @@ class MRJobRunnerLocal(MRJobRunner):
         if not os.path.isdir(out_path):
             os.makedirs(out_path)
 
-        job_args.extend(['-rinline', '--output-dir={}'.format(out_path)])
+        job_args.extend(['-rlocal', '--output-dir={}'.format(out_path)])
 
         return job_args

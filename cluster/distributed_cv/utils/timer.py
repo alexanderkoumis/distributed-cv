@@ -13,4 +13,4 @@ class Timer(object):
         elapsed = timeit.default_timer() - self.start_time
         end_time_str = time.strftime('%H:%M:%S')
         time_format = '\nStart time: {0}\tEnd time: {1}\tElapsed time: {2} seconds\n'
-        sys.stderr.write(time_format.format(self.start_time_str, end_time_str, elapsed))
+        sys.stdout.write(time_format.format(self.start_time_str, end_time_str, elapsed))

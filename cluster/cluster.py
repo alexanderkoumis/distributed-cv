@@ -55,7 +55,7 @@ def process_args():
     group_gpu.add_argument('--gpu', action='store_true', default=False,
                            help='enable GPU (Costs more with AWS)')
     
-    parser.add_argument('--verbose', action='store_true', default=opts['verbose'],
+    parser.add_argument('--verbose', action='store_true', default=bool(opts['verbose']),
                         help='print out debug information')
     parser.add_argument('--run', type=str, dest='run_type', default=opts['run_type'],
                         help='( simulate | local | emr )')

@@ -1,3 +1,6 @@
+import os
+import sys
+
 import boto3
 
 from distributed_cv.config.aws import AwsConfiguration

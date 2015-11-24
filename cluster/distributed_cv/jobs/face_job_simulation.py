@@ -32,7 +32,6 @@ class MRFaceTaskSimulation(object):
         shutil.rmtree(colorferet_dir, ignore_errors=True)
 
         self.timer = Timer()
-        self.timer.start()
 
     def run(self):
         race_count = {
@@ -61,4 +60,7 @@ class MRFaceTaskSimulation(object):
         for race in race_count:
             count = race_count[race]
             results.append((race, count))
+
+        self.timer.end()
+
         return results

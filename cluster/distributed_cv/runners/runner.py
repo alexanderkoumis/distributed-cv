@@ -2,10 +2,13 @@ import os
 import sys
 import tarfile
 
+import distributed_cv
 from distributed_cv.jobs.face_job import MRFaceTask
 from distributed_cv.jobs.face_job_simulation import MRFaceTaskSimulation
 from distributed_cv.utils.printing import print_debug
 
+
+module_dir = os.path.dirname(distributed_cv.__file__)
 
 class MRJobRunner(object):
 
@@ -16,6 +19,10 @@ class MRJobRunner(object):
 
         self._make_archive(file_list, tar_full)
         self.verbose = os.environ['VERBOSE']
+
+        module_files = list(self._module_files())
+        module_tar = os.path.join('resources', 'distributed_cv.tar.gz')
+        self._make_archive(module_files, module_tar, keep_existing=False, recursive=True)
 
         self.job_args = self._get_job_args(tar_full, list_txt, **kwargs)
 
@@ -49,6 +56,7 @@ class MRJobRunner(object):
             '--jobconf=job.settings.cascade_gpu={}'.format(cascade_gpu),
             '--jobconf=job.settings.gpu_or_cpu={}'.format(hardware_type),
             '--jobconf=job.settings.colorferet=colorferet',
+            '--python-archive=resources/distributed_cv.tar.gz#distributed_cv',
             '--archive=resources/colorferet.tar.gz#colorferet',
             '--archive={}#dataset_dir'.format(tar),
             txt
@@ -56,12 +64,24 @@ class MRJobRunner(object):
         return args
 
     @staticmethod
-    def _make_archive(file_list, file_name):
-        print_debug('Creating archive of images as {}'.format(file_name))
+    def _module_files():
+        for root, dirs, files in os.walk(module_dir):
+            for file in files:
+                if file.endswith('.py'):
+                    yield os.path.join(root, file)
+
+    @staticmethod
+    def _make_archive(file_list, file_name, keep_existing=True, recursive=False):
+        print_debug('Creating archive: {}'.format(file_name))
         if os.path.isfile(file_name):
-            print '{} is already an archive'.format(file_name)
-            return
+            if keep_existing:
+                print '{} is already an archive'.format(file_name)
+                return
+            else:
+                os.remove(file_name)
         with tarfile.open(file_name, 'w:gz') as tar:
             print_debug('Creating tar: {}'.format(file_name))
-            for file in file_list:
-                tar.add(file, arcname=os.path.basename(file))
+            if recursive:
+                [tar.add(f, arcname=os.path.join('distributed_cv', os.path.relpath(f, module_dir))) for f in file_list]
+            else:
+                [tar.add(f, arcname=os.path.basename(f)) for f in file_list]

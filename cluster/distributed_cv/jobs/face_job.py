@@ -11,22 +11,17 @@ import numpy
 
 from distributed_cv.datasets.colorferet import labels_int
 from distributed_cv.utils.features import create_detector, create_recognizer
-from distributed_cv.utils.timer import Timer
 
 from mrjob.job import MRJob
 from mrjob.step import MRStep
 from mrjob.compat import jobconf_from_env
 
 
-timer = Timer()
-
 class MRFaceTask(MRJob):
     """A HDFS face/race detection interface.
     """
 
     def mapper_init(self):
-
-        global timer
 
         self.dataset_dir = 'dataset_dir'
         self.output_dir = os.path.join(jobconf_from_env('mapreduce.task.output.dir'), 'faces')
@@ -44,8 +39,6 @@ class MRFaceTask(MRJob):
             os.makedirs(self.output_dir)
 
         self.write_results = False
-
-        timer.start()
 
 
     def mapper(self, _, line):
@@ -87,9 +80,6 @@ class MRFaceTask(MRJob):
     def reducer(self, race, count):
         yield race, sum(count)
 
-    def reducer_final(self):
-        global timer
-        timer.end()
 
 if __name__ == '__main__':
     MRFaceTask.run()

@@ -47,7 +47,7 @@ class AwsConfiguration(Configuration):
                             'export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig && wget http://facedata.s3.amazonaws.com/opencv-gpu-py.tar.gz && sudo -E pip install ./opencv-gpu-py.tar.gz'
                         ],
                         'setup': [
-                            'export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.6/dist-packages/:/usr/local/lib64/python2.6/site-packages',
+                            'export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.6/dist-packages/:/usr/local/lib64/python2.6/site-packages:',
                             'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib'
                         ],
                         'cleanup': [
@@ -73,9 +73,9 @@ class AwsConfiguration(Configuration):
                         'ssh_tunnel_to_job_tracker': True,
                         'visible_to_all_users': True,
                         'ami_version': '3.10.0',
-                        'check_emr_status_every': 5,
+                        'check_emr_status_every': 10,
                         'enable_emr_debugging': True,
-                        'emr_action_on_failure': 'CONTINUE'
+                        'emr_action_on_failure': 'CANCEL_AND_WAIT'
                         # 'python_archives': None
                     },
                     'inline': {
@@ -109,7 +109,7 @@ class AwsConfiguration(Configuration):
                         'setup': [
                             'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/local/cuda/lib',
                             'export PATH=$PATH:/usr/local/cuda/bin',
-                            'export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.6/dist-packages/:/usr/local/lib64/python2.6/site-packages:/usr/local/lib/python2.7/dist-packages/:/usr/local/lib64/python2.7/site-packages',
+                            'export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.6/dist-packages/:/usr/local/lib64/python2.6/site-packages:/usr/local/lib/python2.7/dist-packages/:/usr/local/lib64/python2.7/site-packages:',
                         ],
                         'cleanup': [
                             'NONE'
@@ -117,11 +117,12 @@ class AwsConfiguration(Configuration):
         
                         ##### Cost Factors #####
                         'num_ec2_instances': num_ec2_instances,
+                        'aws_region': 'us-east-1e',
                         'ec2_master_instance_type': 'g2.2xlarge',
                         'ec2_slave_instance_type': 'g2.2xlarge',
                         'ec2_core_instance_type': 'g2.2xlarge',
-                        'ec2_master_instance_bid_price': '0.08',
-                        'ec2_slave_instance_type': '0.08',
+                        'ec2_master_instance_bid_price': '0.09',
+                        'ec2_slave_instance_type': '0.09',
                         'ec2_core_instance_bid_price': '0.08',
                         'max_hours_idle': 1,
                         'mins_to_end_of_hour': 10,
@@ -138,9 +139,9 @@ class AwsConfiguration(Configuration):
                         'ssh_tunnel_to_job_tracker': True,
                         'visible_to_all_users': True,
                         'ami_version': '3.10.0',
-                        'check_emr_status_every': 5,
+                        'check_emr_status_every': 10,
                         'enable_emr_debugging': True,
-                        'emr_action_on_failure': 'CONTINUE'
+                        'emr_action_on_failure': 'CANCEL_AND_WAIT'
                         # 'python_archives': None
                     },
                     'inline': {
