@@ -9,7 +9,7 @@ test_bin = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'cluster.py
 youtube_id = 'mP2MpZhst_g'
 youtube_url = 'https://www.youtube.com/watch?v={}'.format(youtube_id)
 
-hardware_types = ['cpu', 'gpu']
+hardware_types = ['cpu']
 run_types = ['emr']
 # run_types = ['simulate', 'local']
 num_instances = [2, 5, 10]

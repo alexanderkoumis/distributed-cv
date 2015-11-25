@@ -8,7 +8,7 @@ def get_filenames(path):
     print os.path.abspath(path)
     files = []
     for dirpath, dirnames, filenames in os.walk(path):
-        filenames_full = [os.path.join(dirpath, filename) for filename in filenames]
+        filenames_full = [os.path.join(dirpath, f) for f in filenames]
         if len(filenames_full) > 0:
             files.extend(filenames_full)
     return files
