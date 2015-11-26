@@ -44,9 +44,11 @@ class MRFaceTaskSimulation(object):
             'Pacific-Islander': 0,
             'White': 0
         }
+
         for file_path in self.file_list:
             frame = cv2.imread(file_path)
             frame_bgr = None
+            print file_path
             if len(frame.shape) == 3:
                 if frame.shape[2] > 1:
                     frame_bgr = frame

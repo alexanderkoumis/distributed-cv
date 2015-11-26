@@ -94,7 +94,7 @@ def main(opts):
     }
 
     if not opts['run_type'] in runners.keys():
-        sys.exit('Unrecognized run_type. Choose from {}', runners.keys)
+        sys.exit('Unrecognized run_type. Choose from local, emr, or simulate')
 
     if not opts['input_type'] in processors.keys():
         sys.exit('Unrecognized input_type. Choose from {}', processors.keys)        

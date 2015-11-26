@@ -10,11 +10,11 @@ def process_directory(directory):
     if os.path.isdir(directory):
         directory = os.path.normpath(directory)
         exts = ('.jpeg', '.jpg', '.png')
+        dir_stem = os.path.basename(directory)
         file_list = []
         for filename in os.listdir(directory):
             if filename.endswith(exts):
-                file_list.append(filename)
-        dir_stem = os.path.basename(directory)
+                file_list.append(os.path.join(directory, filename))
         list_txt = os.path.join(directory, '{}.txt'.format(dir_stem))
 
         if not os.path.isfile(list_txt):

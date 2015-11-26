@@ -5,7 +5,7 @@ import timeit
 
 class Timer(object):
 
-    def start(self):
+    def __init__(self):
         self.start_time = timeit.default_timer()
         self.start_time_str = time.strftime('%H:%M:%S')
 
