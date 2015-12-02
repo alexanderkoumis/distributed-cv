@@ -5,6 +5,9 @@ import sys
 from distributed_cv.utils.printing import print_debug
 from distributed_cv.utils.video_splitter import VideoSplitter
 
+def process_archive(run_type, archive_file, archive_list):
+    return archive_file, archive_list
+
 def process_directory(directory):
 
     if os.path.isdir(directory):

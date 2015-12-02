@@ -120,9 +120,9 @@ class AwsConfiguration(Configuration):
             config['runners']['emr']['ec2_master_instance_type'] = 'g2.2xlarge'
             config['runners']['emr']['ec2_slave_instance_type'] = 'g2.2xlarge'
             config['runners']['emr']['ec2_core_instance_type'] = 'g2.2xlarge'
-            config['runners']['emr']['ec2_master_instance_bid_price'] = '0.09'
-            config['runners']['emr']['ec2_slave_instance_type'] = '0.09'
-            config['runners']['emr']['ec2_core_instance_bid_price'] = '0.09'
+            config['runners']['emr']['ec2_master_instance_bid_price'] = '0.1'
+            config['runners']['emr']['ec2_slave_instance_type'] = '0.1'
+            config['runners']['emr']['ec2_core_instance_bid_price'] = '0.1'
         return config
 
     def _install_config(self, config):

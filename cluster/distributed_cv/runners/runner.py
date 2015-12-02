@@ -14,16 +14,19 @@ class MRJobRunner(object):
 
     def __init__(self, file_list, list_txt, **kwargs):
 
-        stem = os.path.basename(list_txt).split('.')[0]
-        tar_full = os.path.join('input', '{}.tar.gz'.format(stem))
-
-        self._make_archive(file_list, tar_full)
         self.verbose = os.environ['VERBOSE']
 
-        module_files = list(self._module_files())
-        module_tar = os.path.join('resources', 'distributed_cv.tar.gz')
-        self._make_archive(module_files, module_tar, keep_existing=False, recursive=True)
+        if kwargs['input_type'] == 'archive':
+            tar_full = file_list
+        else:
+            stem = os.path.basename(list_txt).split('.')[0]
+            tar_full = os.path.join('input', '{}.tar.gz'.format(stem))
 
+            self._make_archive(file_list, tar_full)
+            module_files = list(self._module_files())
+            module_tar = os.path.join('resources', 'distributed_cv.tar.gz')
+            self._make_archive(module_files, module_tar, keep_existing=False, recursive=True)
+        
         self.job_args = self._get_job_args(tar_full, list_txt, **kwargs)
 
     def __call__(self):
@@ -42,7 +45,6 @@ class MRJobRunner(object):
             for line in runner.stream_output():
                 results.append(face_count.parse_output_line(line))
         return results
-
 
     def _get_job_args(self, tar, txt, **kwargs):
         cascade_cpu = kwargs['cascade_cpu']

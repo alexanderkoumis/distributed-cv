@@ -7,6 +7,7 @@ import boto3
 from distributed_cv.config.aws import AwsConfiguration
 from distributed_cv.runners.runner import MRJobRunner
 
+
 class MRJobRunnerEMR(MRJobRunner):
 
     bucket = 'facedata'

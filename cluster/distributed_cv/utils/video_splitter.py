@@ -34,6 +34,10 @@ class VideoSplitter(object):
         if self.debug:
             print message
 
+    def _tar_exists(self):
+        tar_full = os.path.join('input', '{}.tar.gz'.format(self.stem))
+        return os.path.isfile(tar_full)
+
     def _init_cap(self):
         cap = cv2.VideoCapture(self.video_path)
         if not cap.isOpened():
@@ -49,7 +53,7 @@ class VideoSplitter(object):
         frame_num_total = int(cap.get(cv2.cv.CV_CAP_PROP_FRAME_COUNT))
         frame_num_last = 0
 
-        if self._already_split(frame_num_total):
+        if self._already_split(frame_num_total) or self._tar_exists():
             [self._append_filename(os.path.join(self.out_dir, filename)) for filename in os.listdir(self.out_dir) if filename.endswith(self.ext)]
             print 'All frames already processed'
             return
