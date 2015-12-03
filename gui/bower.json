@@ -1,0 +1,19 @@
+{
+  "name": "gui",
+  "version": "0.0.0",
+  "homepage": "https://github.com/alexanderkoumis/distributed-cv",
+  "authors": [
+    "alexander <me@alexander.computer>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery.terminal": "~0.8.8"
+  }
+}

@@ -10,6 +10,9 @@
   <meta name="author" content="CMPE 195 Group 3">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- jQuery terminal CSS -->
+  <link rel='stylesheet' type='text/css' href='bower_components/jquery.terminal/css/jquery.terminal.css'>
+
   <!-- Font CSS (Via CDN) -->
   <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800'>
 
@@ -64,8 +67,8 @@
         </li>
         <li class="dropdown menu-merge">
           <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown">
-          	<img src="assets/img/avatars/1.jpg" alt="avatar" class="mw30 br64">
-          	<span class="hidden-xs pl15"> Cool B. </span>
+            <img src="assets/img/avatars/1.jpg" alt="avatar" class="mw30 br64">
+            <span class="hidden-xs pl15"> Cool B. </span>
             <span class="caret caret-tp hidden-xs"></span>
           </a>
           <ul class="dropdown-menu list-group dropdown-persist w250" role="menu">
@@ -195,7 +198,7 @@
               <span class="sidebar-title">Web Crawler</span>
             </a>
           </li>
-          <li class="active">
+          <li>
             <a href="videos.html">
               <span class="fa fa-youtube-play"></span>
               <span class="sidebar-title">Videos</span>
@@ -209,10 +212,12 @@
             </a>
           </li>
           <li>
-            <a href="running-jobs.html">
-              <span class="fa fa-hourglass-half"></span>
-              <span class="sidebar-title">Running jobs</span>
-            </a>
+            <li class="active">
+              <a href="running-jobs.html">
+                <span class="fa fa-hourglass-half"></span>
+                <span class="sidebar-title">Running jobs</span>
+              </a>
+            </li>
           </li>
 
           <!-- sidebar progress bars -->
@@ -244,13 +249,13 @@
         </ul>
         <!-- End: Sidebar Menu -->
 
-	      <!-- Start: Sidebar Collapse Button -->
-	      <div class="sidebar-toggle-mini">
-	        <a href="#">
-	          <span class="fa fa-sign-out"></span>
-	        </a>
-	      </div>
-	      <!-- End: Sidebar Collapse Button -->
+        <!-- Start: Sidebar Collapse Button -->
+        <div class="sidebar-toggle-mini">
+          <a href="#">
+            <span class="fa fa-sign-out"></span>
+          </a>
+        </div>
+        <!-- End: Sidebar Collapse Button -->
 
       </div>
       <!-- End: Sidebar Left Content -->
@@ -266,7 +271,7 @@
         <div class="topbar-left">
           <ol class="breadcrumb">
             <li class="crumb-active">
-              <a>Web Crawler</a>
+              <a>Running Jobs</a>
             </li>
             <li class="crumb-icon">
               <a href="index.html">
@@ -274,9 +279,9 @@
               </a>
             </li>
             <li class="crumb-link">
-              <a href="index.html">Dataset Collection</a>
+              <a href="create-job.html">Cluster Resources</a>
             </li>
-            <li class="crumb-trail">Web Crawler</li>
+            <li class="crumb-trail">Running Jobs</li>
           </ol>
         </div>
       </header>
@@ -294,239 +299,10 @@
           <!-- Admin-panels -->
           <div class="admin-panels fade-onload">
 
-
-
-          <!-- recent orders table -->
-          <div class="panel">
-            <div class="panel-menu p12 admin-form theme-primary">
-              <div class="row">
-                <div class="col-md-5">
-                  <label class="field select">
-                    <select id="filter-category" name="filter-category">
-                      <option value="0">Filter by Category</option>
-                      <option value="1">Smart Phones</option>
-                      <option value="2">Smart Watches</option>
-                      <option value="3">Notebooks</option>
-                      <option value="4">Desktops</option>
-                      <option value="5">Music Players</option>
-                    </select>
-                    <i class="arrow"></i>
-                  </label>
-                </div>
-                <div class="col-md-5">
-                  <label class="field select">
-                    <select id="filter-status" name="filter-status">
-                      <option value="0">Filter by Status</option>
-                      <option value="1">Active</option>
-                      <option value="2">Inactive</option>
-                      <option value="3">Low Stock</option>
-                      <option value="4">Out of Stock</option>
-                    </select>
-                    <i class="arrow"></i>
-                  </label>
-                </div>
-                <div class="col-md-2">
-                  <label class="field select">
-                    <select id="bulk-action" name="bulk-action">
-                      <option value="0">Actions</option>
-                      <option value="1">Edit</option>
-                      <option value="2">Delete</option>
-                      <option value="3">Active</option>
-                      <option value="4">Inactive</option>
-                    </select>
-                    <i class="arrow double"></i>
-                  </label>
-                </div>
-              </div>
+            <div id="terminal" class="terminal ui-dialog-content" style="height: 30em">
             </div>
-            <div class="panel-body pn">
-              <div class="table-responsive">
-                <table class="table admin-form theme-warning tc-checkbox-1 fs13">
-                  <thead>
-                    <tr class="bg-light">
-                      <th class="text-center">Select</th>
-                      <th class="">Image</th>
-                      <th class="">Video Title</th>
-                      <th class="">Images</th>
-                      <th class="">Dependent jobs</th>
-                      <th class="text-right">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="text-center">
-                        <label class="option block mn">
-                          <input type="checkbox" name="mobileos" value="FR">
-                          <span class="checkbox mn"></span>
-                        </label>
-                      </td>
-                      <td class="w100">
-                        <img class="img-responsive mw40 ib mr10" title="user" src="http://img.youtube.com/vi/NwCn-D5xFdc/0.jpg">
-                      </td>
-                      <td class=""><a href="https://www.youtube.com/watch?v=NwCn-D5xFdc">Coca-Cola Happiness Factory</td>
-                      <td class="">1,400</td>
-                      <td class="">3</td>
-                      <td class="text-right">
-                        <div class="btn-group text-right">
-                          <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Active
-                            <span class="caret ml5"></span>
-                          </button>
-                          <ul class="dropdown-menu" role="menu">
-                            <li>
-                              <a href="#">Edit</a>
-                            </li>
-                            <li>
-                              <a href="#">Delete</a>
-                            </li>
-                            <li>
-                              <a href="#">Archive</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                              <a href="#">Complete</a>
-                            </li>
-                            <li class="active">
-                              <a href="#">Pending</a>
-                            </li>
-                            <li>
-                              <a href="#">Canceled</a>
-                            </li>
-                          </ul>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">
-                        <label class="option block mn">
-                          <input type="checkbox" name="mobileos" value="FR">
-                          <span class="checkbox mn"></span>
-                        </label>
-                      </td>
-                      <td class="w100">
-                        <img class="img-responsive mw40 ib mr10" title="user" src="http://img.youtube.com/vi/XP3cyRRAfX0/0.jpg">
-                      </td>
-                      <td class=""><a href="https://www.youtube.com/watch?v=XP3cyRRAfX0">Inspire Her Mind - Verizon Commercial</a></td>
-                      <td class="">2,100</td>
-                      <td class="">4</td>
-                      <td class="text-right">
-                        <div class="btn-group text-right">
-                          <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Active
-                            <span class="caret ml5"></span>
-                          </button>
-                          <ul class="dropdown-menu" role="menu">
-                            <li>
-                              <a href="#">Edit</a>
-                            </li>
-                            <li>
-                              <a href="#">Delete</a>
-                            </li>
-                            <li>
-                              <a href="#">Archive</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                              <a href="#">Complete</a>
-                            </li>
-                            <li class="active">
-                              <a href="#">Pending</a>
-                            </li>
-                            <li>
-                              <a href="#">Canceled</a>
-                            </li>
-                          </ul>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">
-                        <label class="option block mn">
-                          <input type="checkbox" name="mobileos" value="FR">
-                          <span class="checkbox mn"></span>
-                        </label>
-                      </td>
-                      <td class="w100">
-                        <img class="img-responsive mw40 ib mr10" title="user" src="http://img.youtube.com/vi/kMqeoW3XRa0/0.jpg">
-                      </td>
-                      <td class=""><a href="https://www.youtube.com/watch?v=kMqeoW3XRa0">Hail, Caesar! - Official Trailer (HD)</a></td>
-                      <td class="">2,100</td>
-                      <td class="">4</td>
-                      <td class="text-right">
-                        <div class="btn-group text-right">
-                          <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Active
-                            <span class="caret ml5"></span>
-                          </button>
-                          <ul class="dropdown-menu" role="menu">
-                            <li>
-                              <a href="#">Edit</a>
-                            </li>
-                            <li>
-                              <a href="#">Delete</a>
-                            </li>
-                            <li>
-                              <a href="#">Archive</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                              <a href="#">Complete</a>
-                            </li>
-                            <li class="active">
-                              <a href="#">Pending</a>
-                            </li>
-                            <li>
-                              <a href="#">Canceled</a>
-                            </li>
-                          </ul>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">
-                        <label class="option block mn">
-                          <input type="checkbox" name="mobileos" value="FR">
-                          <span class="checkbox mn"></span>
-                        </label>
-                      </td>
-                      <td class="w100">
-                        <img class="img-responsive mw40 ib mr10" title="user" src="http://img.youtube.com/vi/mP2MpZhst_g/0.jpg">
-                      </td>
-                      <td class=""><a href="https://www.youtube.com/watch?v=mP2MpZhst_g">Unidentified people walking down the street in London</td>
-                      <td class="">463</td>
-                      <td class="">0</td>
-                      <td class="text-right">
-                        <div class="btn-group text-right">
-                          <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Active
-                            <span class="caret ml5"></span>
-                          </button>
-                          <ul class="dropdown-menu" role="menu">
-                            <li>
-                              <a href="#">Edit</a>
-                            </li>
-                            <li>
-                              <a href="#">Delete</a>
-                            </li>
-                            <li>
-                              <a href="#">Archive</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                              <a href="#">Complete</a>
-                            </li>
-                            <li class="active">
-                              <a href="#">Pending</a>
-                            </li>
-                            <li>
-                              <a href="#">Canceled</a>
-                            </li>
-                          </ul>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+
           </div>
-
         </div>
         <!-- end: .tray-center -->
 
@@ -552,6 +328,12 @@
   <!-- jQuery -->
   <script src="vendor/jquery/jquery-1.11.1.min.js"></script>
   <script src="vendor/jquery/jquery_ui/jquery-ui.min.js"></script>
+
+  <!-- jQuery Terminal -->
+  <script src="bower_components/jquery.terminal/js/jquery.terminal-min.js"></script>
+
+  <!-- Socket.IO -->
+  <script src="/socket.io/socket.io.js"></script>
 
   <!-- HighCharts Plugin -->
   <script src="vendor/plugins/highcharts/highcharts.js"></script>
@@ -706,14 +488,14 @@
       }
 
       if (Target.parents('.task-handle').length) {
-		      // If item is already checked move it to "current items list"
-		      if (This.hasClass('item-checked')) {
-		        This.removeClass('item-checked').find('input[type="checkbox"]').prop('checked', false);
-		      }
-		      // Otherwise move it to the "completed items list"
-		      else {
-		        This.addClass('item-checked').find('input[type="checkbox"]').prop('checked', true);
-		      }
+          // If item is already checked move it to "current items list"
+          if (This.hasClass('item-checked')) {
+            This.removeClass('item-checked').find('input[type="checkbox"]').prop('checked', false);
+          }
+          // Otherwise move it to the "completed items list"
+          else {
+            This.addClass('item-checked').find('input[type="checkbox"]').prop('checked', true);
+          }
       }
 
     });
@@ -876,6 +658,26 @@
     }
 
   });
+  </script>
+
+
+  <script>
+    var socket = io.connect(document.location.protocol + '//' + document.location.host);
+
+    var terminal = $("#terminal").terminal(function(command, term) {
+      socket.emit('shellInput', command);
+    }, {
+      prompt: "$ ",
+      greetings: false
+    }).css({
+      overflow: "auto"
+    });
+
+    socket.on('shellOutput', function(data) {
+      console.log('cool')
+      terminal.echo(data);
+    });
+
   </script>
   <!-- END: PAGE SCRIPTS -->
 

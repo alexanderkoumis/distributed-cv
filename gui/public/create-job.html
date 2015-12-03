@@ -195,7 +195,7 @@
               <span class="sidebar-title">Web Crawler</span>
             </a>
           </li>
-          <li class="active">
+          <li>
             <a href="videos.html">
               <span class="fa fa-youtube-play"></span>
               <span class="sidebar-title">Videos</span>
@@ -203,10 +203,12 @@
           </li>
           <li class="sidebar-label pt15">Cluster Resources</li>
           <li>
-            <a href="create-job.html">
-              <span class="fa fa-plus-square"></span>
-              <span class="sidebar-title">Create Job</span>
-            </a>
+            <li class="active">
+              <a href="create-job.html">
+                <span class="fa fa-plus-square"></span>
+                <span class="sidebar-title">Create Job</span>
+              </a>
+            </li>
           </li>
           <li>
             <a href="running-jobs.html">
@@ -266,7 +268,7 @@
         <div class="topbar-left">
           <ol class="breadcrumb">
             <li class="crumb-active">
-              <a>Web Crawler</a>
+              <a>Create Job</a>
             </li>
             <li class="crumb-icon">
               <a href="index.html">
@@ -274,9 +276,9 @@
               </a>
             </li>
             <li class="crumb-link">
-              <a href="index.html">Dataset Collection</a>
+              <a href="index.html">Cluster Resources</a>
             </li>
-            <li class="crumb-trail">Web Crawler</li>
+            <li class="crumb-trail">Create Job</li>
           </ol>
         </div>
       </header>
@@ -294,237 +296,67 @@
           <!-- Admin-panels -->
           <div class="admin-panels fade-onload">
 
+            <div class="panel">
+              <div class="panel-heading">
+                <span class="panel-title">Standard Fields</span>
+              </div>
+              <div class="panel-body">
 
+                <form class="form-horizontal" role="form">
 
-          <!-- recent orders table -->
-          <div class="panel">
-            <div class="panel-menu p12 admin-form theme-primary">
-              <div class="row">
-                <div class="col-md-5">
-                  <label class="field select">
-                    <select id="filter-category" name="filter-category">
-                      <option value="0">Filter by Category</option>
-                      <option value="1">Smart Phones</option>
-                      <option value="2">Smart Watches</option>
-                      <option value="3">Notebooks</option>
-                      <option value="4">Desktops</option>
-                      <option value="5">Music Players</option>
-                    </select>
-                    <i class="arrow"></i>
-                  </label>
-                </div>
-                <div class="col-md-5">
-                  <label class="field select">
-                    <select id="filter-status" name="filter-status">
-                      <option value="0">Filter by Status</option>
-                      <option value="1">Active</option>
-                      <option value="2">Inactive</option>
-                      <option value="3">Low Stock</option>
-                      <option value="4">Out of Stock</option>
-                    </select>
-                    <i class="arrow"></i>
-                  </label>
-                </div>
-                <div class="col-md-2">
-                  <label class="field select">
-                    <select id="bulk-action" name="bulk-action">
-                      <option value="0">Actions</option>
-                      <option value="1">Edit</option>
-                      <option value="2">Delete</option>
-                      <option value="3">Active</option>
-                      <option value="4">Inactive</option>
-                    </select>
-                    <i class="arrow double"></i>
-                  </label>
-                </div>
+                  <div class="form-group">
+                    <label for="inputSelect" class="col-lg-3 control-label">Hardware Type</label>
+                    <div class="col-lg-8">
+                      <div class="bs-component">
+                        <select id="jobHardwareType" class="form-control">
+                          <option>CPU</option>
+                          <option>GPU</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputSelect" class="col-lg-3 control-label">Run Type</label>
+                    <div class="col-lg-8">
+                      <div class="bs-component">
+                        <select id="jobRunType" class="form-control">
+                          <option>EMR</option>
+                          <option>Local</option>
+                          <option>Simulation</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputStandard" class="col-lg-3 control-label">Number of Instances</label>
+                    <div class="col-lg-8">
+                      <div class="bs-component">
+                        <input id="jobNumInstances" type="text" id="inputStandard" class="form-control" placeholder="2">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputSelect" class="col-lg-3 control-label">Input Dataset</label>
+                    <div class="col-lg-8">
+                      <div class="bs-component">
+                        <select id="jobDataset" class="form-control">
+                          <option>YouTube - Coca-Cola Happiness Factory</option>
+                          <option>YouTube - Inspire Her Mind - Verizon Commercial</option>
+                          <option>YouTube - Hail, Caesar! - Official Trailer (HD)</option>
+                          <option>YouTube - Unidentified people walking down the street in London</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-footer">
+                    <button id="jobButton" type="submit" class="button btn-primary">Create Job</button>
+                  </div>
+                </form>
               </div>
             </div>
-            <div class="panel-body pn">
-              <div class="table-responsive">
-                <table class="table admin-form theme-warning tc-checkbox-1 fs13">
-                  <thead>
-                    <tr class="bg-light">
-                      <th class="text-center">Select</th>
-                      <th class="">Image</th>
-                      <th class="">Video Title</th>
-                      <th class="">Images</th>
-                      <th class="">Dependent jobs</th>
-                      <th class="text-right">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="text-center">
-                        <label class="option block mn">
-                          <input type="checkbox" name="mobileos" value="FR">
-                          <span class="checkbox mn"></span>
-                        </label>
-                      </td>
-                      <td class="w100">
-                        <img class="img-responsive mw40 ib mr10" title="user" src="http://img.youtube.com/vi/NwCn-D5xFdc/0.jpg">
-                      </td>
-                      <td class=""><a href="https://www.youtube.com/watch?v=NwCn-D5xFdc">Coca-Cola Happiness Factory</td>
-                      <td class="">1,400</td>
-                      <td class="">3</td>
-                      <td class="text-right">
-                        <div class="btn-group text-right">
-                          <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Active
-                            <span class="caret ml5"></span>
-                          </button>
-                          <ul class="dropdown-menu" role="menu">
-                            <li>
-                              <a href="#">Edit</a>
-                            </li>
-                            <li>
-                              <a href="#">Delete</a>
-                            </li>
-                            <li>
-                              <a href="#">Archive</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                              <a href="#">Complete</a>
-                            </li>
-                            <li class="active">
-                              <a href="#">Pending</a>
-                            </li>
-                            <li>
-                              <a href="#">Canceled</a>
-                            </li>
-                          </ul>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">
-                        <label class="option block mn">
-                          <input type="checkbox" name="mobileos" value="FR">
-                          <span class="checkbox mn"></span>
-                        </label>
-                      </td>
-                      <td class="w100">
-                        <img class="img-responsive mw40 ib mr10" title="user" src="http://img.youtube.com/vi/XP3cyRRAfX0/0.jpg">
-                      </td>
-                      <td class=""><a href="https://www.youtube.com/watch?v=XP3cyRRAfX0">Inspire Her Mind - Verizon Commercial</a></td>
-                      <td class="">2,100</td>
-                      <td class="">4</td>
-                      <td class="text-right">
-                        <div class="btn-group text-right">
-                          <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Active
-                            <span class="caret ml5"></span>
-                          </button>
-                          <ul class="dropdown-menu" role="menu">
-                            <li>
-                              <a href="#">Edit</a>
-                            </li>
-                            <li>
-                              <a href="#">Delete</a>
-                            </li>
-                            <li>
-                              <a href="#">Archive</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                              <a href="#">Complete</a>
-                            </li>
-                            <li class="active">
-                              <a href="#">Pending</a>
-                            </li>
-                            <li>
-                              <a href="#">Canceled</a>
-                            </li>
-                          </ul>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">
-                        <label class="option block mn">
-                          <input type="checkbox" name="mobileos" value="FR">
-                          <span class="checkbox mn"></span>
-                        </label>
-                      </td>
-                      <td class="w100">
-                        <img class="img-responsive mw40 ib mr10" title="user" src="http://img.youtube.com/vi/kMqeoW3XRa0/0.jpg">
-                      </td>
-                      <td class=""><a href="https://www.youtube.com/watch?v=kMqeoW3XRa0">Hail, Caesar! - Official Trailer (HD)</a></td>
-                      <td class="">2,100</td>
-                      <td class="">4</td>
-                      <td class="text-right">
-                        <div class="btn-group text-right">
-                          <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Active
-                            <span class="caret ml5"></span>
-                          </button>
-                          <ul class="dropdown-menu" role="menu">
-                            <li>
-                              <a href="#">Edit</a>
-                            </li>
-                            <li>
-                              <a href="#">Delete</a>
-                            </li>
-                            <li>
-                              <a href="#">Archive</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                              <a href="#">Complete</a>
-                            </li>
-                            <li class="active">
-                              <a href="#">Pending</a>
-                            </li>
-                            <li>
-                              <a href="#">Canceled</a>
-                            </li>
-                          </ul>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">
-                        <label class="option block mn">
-                          <input type="checkbox" name="mobileos" value="FR">
-                          <span class="checkbox mn"></span>
-                        </label>
-                      </td>
-                      <td class="w100">
-                        <img class="img-responsive mw40 ib mr10" title="user" src="http://img.youtube.com/vi/mP2MpZhst_g/0.jpg">
-                      </td>
-                      <td class=""><a href="https://www.youtube.com/watch?v=mP2MpZhst_g">Unidentified people walking down the street in London</td>
-                      <td class="">463</td>
-                      <td class="">0</td>
-                      <td class="text-right">
-                        <div class="btn-group text-right">
-                          <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Active
-                            <span class="caret ml5"></span>
-                          </button>
-                          <ul class="dropdown-menu" role="menu">
-                            <li>
-                              <a href="#">Edit</a>
-                            </li>
-                            <li>
-                              <a href="#">Delete</a>
-                            </li>
-                            <li>
-                              <a href="#">Archive</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                              <a href="#">Complete</a>
-                            </li>
-                            <li class="active">
-                              <a href="#">Pending</a>
-                            </li>
-                            <li>
-                              <a href="#">Canceled</a>
-                            </li>
-                          </ul>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+
+
+
           </div>
 
         </div>
@@ -548,6 +380,9 @@
   <!-- End: Main -->
 
   <!-- BEGIN: PAGE SCRIPTS -->
+
+  <!-- Socket.IO -->
+  <script src="/socket.io/socket.io.js"></script>
 
   <!-- jQuery -->
   <script src="vendor/jquery/jquery-1.11.1.min.js"></script>
@@ -877,6 +712,55 @@
 
   });
   </script>
+
+  <script>
+
+    function getYouTubeURL(datasetTitle) {
+      var titleMap = {
+       'YouTube - Coca-Cola Happiness Factory': 'NwCn-D5xFdc',
+       'YouTube - Inspire Her Mind - Verizon Commercial': 'XP3cyRRAfX0',
+       'YouTube - Hail, Caesar! - Official Trailer (HD)': 'kMqeoW3XRa0',
+       'YouTube - Unidentified people walking down the street in London': 'mP2MpZhst_g'
+      }
+      return 'https://www.youtube.com/watch?v=' + titleMap[datasetTitle];
+    }
+
+    var host = document.location.protocol + '//' + document.location.host;
+    var socket = io.connect(host);
+    var jobButton = document.getElementById('jobButton');
+
+    jobButton.addEventListener('click', function() {
+
+      var hardwareType = document.getElementById('jobHardwareType').value.toLowerCase();
+      var runType = document.getElementById('jobRunType').value.toLowerCase();
+      var numInstances = document.getElementById('jobNumInstances').value;
+      var dataset = document.getElementById('jobDataset').value;
+
+      if (numInstances === '') {
+        numInstances = '2'
+      }
+
+      dataset = getYouTubeURL(dataset);
+
+      args = [
+        '--verbose',
+        '--' + hardwareType,
+        '--run', runType,
+        '--youtube', dataset,
+        '--num_instances', numInstances
+      ];
+
+      socket.emit('shellInput', args);
+
+      var alertMsg = 'Created job with args:\n\n' + args.join(' ') + '\n\n' +
+                     'See job status at: ' + host + '/running-jobs.html';
+
+      alert(alertMsg);
+
+    });
+
+  </script>
+
   <!-- END: PAGE SCRIPTS -->
 
 </body>
